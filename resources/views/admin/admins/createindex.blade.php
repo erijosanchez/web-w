@@ -103,7 +103,7 @@
                             <div class="d-flex justify-content-end gap-2 mt-4">
                                 <a href="#" class="btn btn-light px-4 mr-4">Cancelar</a>
                                 <button type="submit" class="btn btn-primary px-4" id="submitButton">Crear
-                                    Administrador</button>
+                                    Administrador...</button>
                             </div>
                         </form>
                     </div>
