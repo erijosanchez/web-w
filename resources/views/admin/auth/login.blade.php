@@ -28,7 +28,7 @@
     </div>
 
     <div class="login-container">
-        <h2>Login Administrador</h2>
+        <h2>Administrator Login  </h2>
         <form method="POST" id="loginForm" action="{{ route('admin.login.submit') }}">
             @csrf
             <div class="input-group">
@@ -45,7 +45,7 @@
             </div>
             <button type="submit" class="btn-login">Login</button>
             <div class="links">
-                <a href="https://example.com/forgot-password">No recuerda su contraseña?</a>
+                <a href="#">No recuerda su contraseña?</a>
             </div>
         </form>
     </div>

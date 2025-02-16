@@ -14,9 +14,9 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard'); /**autnetificación exitosa, redirige al dashboard */
         }
-        return view('admin.auth.login');
+        return view('admin.auth.login'); /** redirecciona al formulario del login si no esta autentificado */
     }
 
     public function login(Request $request)
