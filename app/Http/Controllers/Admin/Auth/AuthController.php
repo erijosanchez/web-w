@@ -3,20 +3,27 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminUsers;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Services\AuthenticationService;
+use App\Events\Auth\LoginAttempt;
+use App\Events\Auth\LoginSuccess;
+use App\Events\Auth\LoginFailed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use Illuminate\Support\Facades\Validator;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
     public function showLoginForm()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard'); /**autnetificación exitosa, redirige al dashboard */
         }
-        return view('admin.auth.login');
+        return view('admin.auth.login'); /** redirecciona al formulario del login si no esta autentificado */
     }
 
     public function login(Request $request)
