@@ -6,68 +6,57 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminRole extends Model
 {
-    protected $table = 'admin_roles';
-    
-    protected $fillable = ['name', 'description'];
+    protected $table = 'admin_role';
+
+    // Permitir asignación masiva si es necesario
+    protected $fillable = [
+        'admin_id',
+        'role_id'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
 
     public function permissions()
     {
-        return $this->belongsToMany(AdminPermisos::class, 'role_permissions', 'role_id', 'permission_id')
-                    ->using(RolePermissions::class);
+        return $this->belongsToMany(Permissions::class, 'permission_role', 'role_id', 'permission_id');
     }
 
-    public function adminUsers()
+    public function admins()
     {
-        return $this->hasMany(AdminUsers::class, 'role_id');
+        return $this->belongsToMany(AdminUser::class, 'admin_role', 'role_id', 'admin_id');
     }
 
-    // Métodos útiles para manejar permisos
-    public function givePermissionTo($permission)
+    public function assignPermission($permissionId)
     {
-        if (is_string($permission)) {
-            $permission = AdminPermisos::where('slug', $permission)->firstOrFail();
+        if (!$this->permissions()->where('permission_id', $permissionId)->exists()) {
+            return $this->permissions()->attach($permissionId);
         }
-        
-        if ($this->permissions->contains($permission)) {
-            return $this;
-        }
-        
-        $this->permissions()->attach($permission);
-        
-        return $this;
+        return false;
     }
 
-    public function withdrawPermissionTo($permission)
+    public function removePermission($permissionId)
     {
-        if (is_string($permission)) {
-            $permission = AdminPermisos::where('slug', $permission)->firstOrFail();
-        }
-
-        $this->permissions()->detach($permission);
-
-        return $this;
+        return $this->permissions()->detach($permissionId);
     }
 
-    public function updatePermissions(array $permissions)
+    public function syncPermissions($permissionIds)
     {
-        $permissionIds = collect($permissions)->map(function ($permission) {
-            if (is_numeric($permission)) {
-                return $permission;
-            }
-            return AdminPermisos::where('slug', $permission)->firstOrFail()->id;
-        });
-
-        $this->permissions()->sync($permissionIds);
-
-        return $this;
+        return $this->permissions()->sync($permissionIds);
     }
 
-    public function hasPermission($permission)
+    // Deshabilitamos timestamps si la tabla no los tiene
+    public $timestamps = false;
+
+    public function admin()
     {
-        if (is_string($permission)) {
-            return $this->permissions->contains('slug', $permission);
-        }
-        
-        return $this->permissions->contains($permission);
+        return $this->belongsTo(AdminUser::class, 'admin_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }
