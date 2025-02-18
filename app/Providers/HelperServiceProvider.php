@@ -20,6 +20,5 @@ class HelperServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Cargar los helpers
-        require_once app_path('Helpers/helpers.php');
     }
 }
