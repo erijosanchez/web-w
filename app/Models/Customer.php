@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany, BelongsToMany, HasOne};
 
 class Customer extends Model
 {
@@ -22,6 +23,13 @@ class Customer extends Model
         'password',
     ];
 
+    protected $casts = 
+    [
+        'last_login' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
     //Relacion con la tabla de orden o pedido
     public function orders()
     {
@@ -32,5 +40,10 @@ class Customer extends Model
     public function carts()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function pageVisits()
+    {
+        return $this->hasMany(PageVisit::class);
     }
 }

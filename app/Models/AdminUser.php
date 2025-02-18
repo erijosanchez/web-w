@@ -3,45 +3,47 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany, BelongsToMany, HasOne};
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class AdminUser extends Model
+class AdminUser extends Authenticatable
 {
-    namespace App\Models;
+    protected $table =  'admin_user';
 
-use Illuminate\Database\Eloquent\Model;
-
-class AdminUser extends Model
-{
-    protected $table = 'admin_users';
-
-    //Columnas de la tabla admin_users
+    //columnas de la tabla admin_user
     protected $fillable = 
     [
-        'name', 
-        'email', 
-        'password', 
-        'is_active', 
+        'name',
+        'email',
+        'password',
+        'is_active',
         'last_login'
     ];
 
-    protected $hidden = [
-        'password',
+    protected $casts = [
+        'is_active' => 'boolean',
+        'last_login' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        // Actualiza last_login cada vez que el modelo se actualiza
-        static::updating(function ($adminUser) {
-            if ($adminUser->isDirty('last_login')) {
-                $adminUser->last_login = Carbon::now();
-            }
-        });
-    }
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'admin_role', 'admin_id', 'role_id');
+        return $this->belongsToMany(Roles::class, 'admin_role');
+    }
+
+    public function pages()
+    {
+        return $this->hasMany(Page::class, 'created_by');
+    }
+
+    public function auditLogs()
+    {
+        return $this->hasMany(AuditLog::class, 'admin_id');
+    }
+
+    public function customReports()
+    {
+        return $this->hasMany(CustomReport::class, 'created_by');
     }
 }
