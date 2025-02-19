@@ -51,6 +51,7 @@
     </div>
     <script src="{{ asset('assets/backend/assets/js/login.js') }}"></script>
 
+    <!-- NOTIFICACIONES CON TAILWIN CSS-->
     <div id="alert-container" class="fixed top-4 right-4 flex flex-col gap-2">
         @if (session('success'))
             <div class="alert-message flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -84,4 +85,6 @@
             </div>
         @endif
     </div>
+
+    <!-- END NOTIFICACIONES -->
 </body>
