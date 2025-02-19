@@ -2,6 +2,7 @@
 /node_modules
 /public/build
 /public/hot
+/database/bd-w.sql
 /public/storage
 /storage/*.key
 /storage/pail
