@@ -3,87 +3,58 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\AdminUsers;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Services\AuthenticationService;
-use App\Events\Auth\LoginAttempt;
-use App\Events\Auth\LoginSuccess;
-use App\Events\Auth\LoginFailed;
+use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+
 
 class AuthController extends Controller
 {
+    //muestra la vista del login de administrador
     public function showLoginForm()
     {
-        if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.dashboard'); /**autnetificación exitosa, redirige al dashboard */
-        }
-        return view('admin.auth.login'); /** redirecciona al formulario del login si no esta autentificado */
+        return view('admin.auth.login');
     }
 
-    public function login(Request $request)
+    //Procesa el el login de los usuarios
+    public function login(LoginRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ], [
-            'email.required' => 'El correo electrónico es obligatorio',
-            'email.email' => 'Por favor, introduce un correo electrónico válido',
-            'password.required' => 'La contraseña es obligatoria',
-            'password.min' => 'La contraseña debe tener al menos 6 caracteres'
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        // Update last login timestamp
+        Auth::guard('admin')->user()->update([
+            'last_login' => Carbon::now()
         ]);
 
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput($request->except('password'))
-                ->with('error', 'Error en las credenciales');
-        }
+        // Log successful login for audit
+        activity()
+            ->causedBy(Auth::guard('admin')->user())
+            ->log('Admin login successful');
 
-        $credentials = $request->only('email', 'password');
-        
-        // Intentar autenticar al usuario
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $admin = Auth::guard('admin')->user();
-            
-            // Verificar si el usuario está activo
-            if (!$admin->is_active) {
-                Auth::guard('admin')->logout();
-                return redirect()
-                    ->route('admin.login')
-                    ->with('error', 'Tu cuenta está desactivada. Contacta al administrador.');
-            }
-
-            // Actualizar último login
-            $admin->update([
-                'last_login' => Carbon::now(),
-            ]);
-
-            return redirect()
-                ->intended(route('admin.dashboard'))
-                ->with('success', '¡Bienvenido al panel de administración!');
-        }
-
-        // Si la autenticación falla
-        return redirect()
-            ->back()
-            ->with('error', 'Las credenciales proporcionadas no coinciden con nuestros registros.');
+        return redirect()->intended(route('admin.dashboard'));
     }
 
     public function logout(Request $request)
     {
+        // Log logout for audit
+        if (Auth::guard('admin')->check()) {
+            activity()
+                ->causedBy(Auth::guard('admin')->user())
+                ->log('Admin logout');
+        }
+
         Auth::guard('admin')->logout();
+
         $request->session()->invalidate();
+
         $request->session()->regenerateToken();
-        
-        return redirect()
-            ->route('admin.login')
-            ->with('success', 'Has cerrado sesión correctamente');
+
+        return redirect()->route('admin.login');
     }
 }

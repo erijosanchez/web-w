@@ -7,13 +7,14 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('auth/web-w/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [AuthController::class, 'login'])->name('login.submit');
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
+    Route::middleware('guest:admin')->group(function () {
+        Route::get('auth/web-w/login', [AuthController::class, 'showLoginForm'])->name('login');
+        Route::post('login', [AuthController::class, 'login'])->name('login.submit');
+    });
 
     /* Rutas protegistas */
-    Route::prefix('web-w')->middleware('auth:admin')->group(function () {
+    Route::prefix('web-w')->middleware('admin.auth')->group(function () {
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
         /* PERFIL DE ADMINISTRADOR */
         Route::controller(ProfileAdminController::class)->group(function () {
             Route::get('/perfil', 'index')->name('profile');

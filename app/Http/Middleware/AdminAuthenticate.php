@@ -3,20 +3,24 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminAuthenticate
+class AdminAuthenticate extends Authenticate
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next, ...$guards)
     {
-        return $next($request);
+        // Force admin guard
+        $guards = ['admin'];
+        return parent::handle($request, $next, ...$guards);
     }
+
 
     protected function redirectTo($request)
     {
