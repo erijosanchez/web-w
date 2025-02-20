@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Spatie\Activitylog\Models\Activity;
 
 class ActivityLogServiceProvider extends ServiceProvider
 {
@@ -17,8 +18,7 @@ class ActivityLogServiceProvider extends ServiceProvider
     /**
      * Bootstrap services.
      */
-    //
-    public function boot()
+    public function boot(): void
     {
         Activity::saving(function (Activity $activity) {
             $activity->properties = $activity->properties->put('ip', request()->ip());
