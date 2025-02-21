@@ -8,8 +8,6 @@ use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
 
 
 class AuthController extends Controller

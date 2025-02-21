@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Auth\Events\Lockout;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use App\Models\AdminUser;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Lockout;
 
 class LoginRequest extends FormRequest
 {
