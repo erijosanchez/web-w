@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-sm navbar-default">
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="{{ isActiveRoute('admin.dashboard') }}">
+                <li class="">
                     <a href="{{ route('admin.dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
                 <li class="menu-title">Web Configuracion</li><!-- /.menu-title -->
@@ -65,8 +65,7 @@
                 @if (auth()->check())
                     <li class="menu-title ">Personal</li><!-- /.menu-title -->
                     <li
-                        class="menu-item-has-children dropdown {{ isActiveRoute('admin.createAdmin') }} {{ isActiveRoute('admin.superadmins') }} 
-                        {{ isActiveRoute('admin.admins') }} {{ isActiveRoute('admin.supervisores') }}">
+                        class="menu-item-has-children dropdown">
 
                         @if (auth()->user()->role_id === 4)
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
