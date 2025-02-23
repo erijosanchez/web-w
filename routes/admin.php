@@ -19,6 +19,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::controller(ProfileAdminController::class)->group(function () {
             Route::get('/perfil', 'index')->name('profile');
             Route::post('/profile-update', 'update_profile')->name('update.profile');
+            Route::post('/profile/password', 'updatePassword')->name('update.password');
         });
 
         /* OTROS MODULOS DEL PANEL DE ADMINISTRACIÓN */
