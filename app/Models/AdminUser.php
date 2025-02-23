@@ -16,6 +16,7 @@ class AdminUser extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_photo_path', /** Agrega campo de foto de perfil referenciado en la base de datos */
         'is_active',
         'last_login'
     ];
