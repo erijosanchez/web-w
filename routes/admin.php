@@ -18,8 +18,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         /* PERFIL DE ADMINISTRADOR */
         Route::controller(ProfileAdminController::class)->group(function () {
             Route::get('/perfil', 'index')->name('profile');
-            Route::post('/profile-update', 'update_profile')->name('update.profile');
-            Route::post('/profile/password', 'updatePassword')->name('update.password');
+            Route::put('/profile-update', 'update_profile')->name('update.profile');
+            Route::put('/profile/password', 'updatePassword')->name('update.password');
             Route::post('/profile/photo', 'updatePhoto')->name('update.photo');
             Route::delete('/profile/photo', 'destroyPhoto')->name('delete.photo');
         });

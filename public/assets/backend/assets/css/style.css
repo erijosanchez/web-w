@@ -2420,6 +2420,12 @@ header .form-inline .search-form.close {
 }
 
 /* Estilo para el botón de mostrar/ocultar contraseña */
+.passt{
+  font-size: 0.8rem !important;
+  font-weight: 400;
+  color: #a1a1a1;
+}
+
 .password-toggle {
   position: absolute;
   right: 15px;
