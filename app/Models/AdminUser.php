@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany, BelongsToMany, HasOne};
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class AdminUser extends Authenticatable
@@ -46,5 +47,16 @@ class AdminUser extends Authenticatable
     public function customReports()
     {
         return $this->hasMany(CustomReport::class, 'created_by');
+    }
+
+    /** funcion agregada para la actualización de foto de perfil de administrador */
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        if ($this->profile_photo_path) {
+            return Storage::disk('public')->url($this->profile_photo_path);
+        }
+        
+        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
     }
 }

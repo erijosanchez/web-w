@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileAdminController;
+use App\Http\Controllers\Admin\AdminsEditController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest:admin')->group(function () {
@@ -20,6 +20,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/perfil', 'index')->name('profile');
             Route::post('/profile-update', 'update_profile')->name('update.profile');
             Route::post('/profile/password', 'updatePassword')->name('update.password');
+            Route::post('/profile/photo', 'updatePhoto')->name('update.photo');
+            Route::delete('/profile/photo', 'destroyPhoto')->name('delete.photo');
         });
 
         /* OTROS MODULOS DEL PANEL DE ADMINISTRACIÓN */
@@ -27,8 +29,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/dashboard', 'index')->name('dashboard');
         });
 
-        /* ADMINISTRADORES */
-        Route::controller(AdminsController::class)->group(function () {
+        /* Rutas para la ediion y muestra de todos los administradores del sistema */
+        Route::controller(AdminsEditController::class)->group(function () {
             /** CREAR ADMINISTRADORES CON SUS ROLES */
             Route::get('/create-admin', 'createAdminIndex')->name('createAdmin');
             Route::post('/store-admin', 'storeAdmin')->name('StoreAdmin');
