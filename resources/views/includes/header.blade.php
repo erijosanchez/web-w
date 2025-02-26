@@ -52,7 +52,7 @@
 
             <div class="user-area dropdown float-right">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="user-avatar rounded-circle" src="{{ auth()->user()->profile_img ? asset('storage/' . auth()->user()->profile_img) : asset('assets/backend/images/admin.jpg')}}"
+                    <img class="user-avatar rounded-circle" src="{{ $admin->profile_photo_url ?? asset('assets/backend/images/admin.jpg')}}"
                     alt="User Avatar">
                 </a>
 

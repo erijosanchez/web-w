@@ -31,7 +31,7 @@
                                     <form method="post" action="{{ route('admin.delete.photo') }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn btn-danger mt-2 form-control">Eliminar foto</button>
+                                        <button class="btn btn-danger mt-2 form-control">Eliminar foto</button>
                                     </form>
                                 @endif
                             </div>

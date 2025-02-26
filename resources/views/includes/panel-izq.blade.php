@@ -62,12 +62,9 @@
                 </li>
 
                 <!-- SECCION DONDE SE MOSTRARÁ EL LISTADO DE TODO EL PERSONAL A CARGO -->
-                @if (auth()->check())
                     <li class="menu-title ">Personal</li><!-- /.menu-title -->
                     <li
                         class="menu-item-has-children dropdown">
-
-                        @if (auth()->user()->role_id === 4)
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Administradores</a>
                             <ul class="sub-menu children dropdown-menu">
@@ -86,19 +83,7 @@
                                 <li><i class="menu-icon ti-write"></i><a
                                         href="{{ route('admin.supervisores') }}">Supervicion y Reportes</a></li>
                             </ul>
-                        @elseif(auth()->user()->role_id === 5)
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Administradores</a>
-                            <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon ti-stamp"></i><a href="{{ route('admin.admins') }}">Admins</a>
-                                </li>
-                                <li><i class="menu-icon ti-write"></i><a
-                                        href="{{ route('admin.supervisores') }}">Supervicion y reportes</a></li>
-                            </ul>
-                        @endif
-
                     </li>
-                @endif
                 <!-- //////////////////////////////////////////////////////////////////////////////////// -->
 
                 <li class="menu-title">Marketing</li><!-- /.menu-title -->
