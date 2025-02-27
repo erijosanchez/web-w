@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\AdminsEditController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware('guest:admin')->group(function () {
+    Route::middleware(['guest', 'redirect.admin'])->group(function () {
         Route::get('auth/web-w/login', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('login', [AuthController::class, 'login'])->name('login.submit');
     });
