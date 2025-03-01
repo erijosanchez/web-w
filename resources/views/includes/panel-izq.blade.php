@@ -62,28 +62,43 @@
                 </li>
 
                 <!-- SECCION DONDE SE MOSTRARÁ EL LISTADO DE TODO EL PERSONAL A CARGO -->
-                    <li class="menu-title ">Personal</li><!-- /.menu-title -->
-                    <li
-                        class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Administradores</a>
-                            <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon ti-marker-alt"></i><a href="#">Crear
-                                        Roles</a></li>
-                                <li><i class="menu-icon ti-marker-alt"></i><a href="#">Crear
-                                        Permisos</a></li>
-                                <li><i class="menu-icon ti-hummer"></i><a href="{{ route('admin.createAdmin') }}">Crear
-                                        Administrador</a></li>
+                <li class="menu-title ">Personal</li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Administradores</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon ti-hummer"></i><a href="{{ route('admin.createAdmin') }}">Crear
+                                Administrador</a></li>
 
-                                <li><i class="menu-icon ti-crown"></i><a href="{{ route('admin.superadmins') }}">Super
-                                        Admins</a>
-                                </li>
-                                <li><i class="menu-icon ti-stamp"></i><a href="{{ route('admin.admins') }}">Admins</a>
-                                </li>
-                                <li><i class="menu-icon ti-write"></i><a
-                                        href="{{ route('admin.supervisores') }}">Supervicion y Reportes</a></li>
-                            </ul>
-                    </li>
+                        <li><i class="menu-icon ti-crown"></i><a href="{{ route('admin.superadmins') }}">Super
+                                Admins</a>
+                        </li>
+                        <li><i class="menu-icon ti-stamp"></i><a href="{{ route('admin.admins') }}">Admins</a>
+                        </li>
+                        <li><i class="menu-icon ti-write"></i><a href="{{ route('admin.supervisores') }}">Supervicion
+                                y Reportes</a></li>
+                    </ul>
+                </li>
+                <!-- Separación -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="menu-icon fa fa-gears"></i>Roles</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon ti-marker-alt"></i><a href="{{ route('admin.roles') }}">Lista de roles</a></li>
+                        <li><i class="menu-icon ti-marker-alt"></i><a href="#">Crear
+                                Roles</a></li>
+                    </ul>
+                </li>
+                <!-- Separación -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> <i class="menu-icon ti-key"></i>Permisos</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon ti-marker-alt"></i><a href="#">Lista de Permisos</a></li>
+                        <li><i class="menu-icon ti-marker-alt"></i><a href="#">Crear
+                                Permisos</a></li>
+                    </ul>
+                </li>
                 <!-- //////////////////////////////////////////////////////////////////////////////////// -->
 
                 <li class="menu-title">Marketing</li><!-- /.menu-title -->

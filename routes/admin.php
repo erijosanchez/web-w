@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\AdminsEditController;
+use App\Http\Controllers\Admin\PermisionRoleController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['guest', 'redirect.admin'])->group(function () {
@@ -33,6 +34,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::controller(AdminsEditController::class)->group(function () {
             /** CREAR ADMINISTRADORES CON SUS ROLES */
             Route::get('/create-admin', 'createAdminIndex')->name('createAdmin');
+            Route::post('/store-admin', 'storeAdmin')->name('StoreAdmin');
+            /** VISTA DEL LISTADO DE CADA ADMINISTRADOR SEGUN SU ROL */
+            Route::get('/superadmins', 'saindex')->middleware('admin.permission:superadmins')->name('superadmins');
+            Route::get('/admins', 'adminindex')->middleware('admin.permission:admins')->name('admins');
+            Route::get('/supervisores', 'supervisorindex')->middleware('admin.permission:supervisores')->name('supervisores');
+        });
+
+        /** Rutas para a edicion, creación y listado de los roles y permisos*/
+        Route::controller(PermisionRoleController::class)->group(function () {
+            /** CREAR ADMINISTRADORES CON SUS ROLES */
+            Route::get('/role', 'index')->name('roles');
             Route::post('/store-admin', 'storeAdmin')->name('StoreAdmin');
             /** VISTA DEL LISTADO DE CADA ADMINISTRADOR SEGUN SU ROL */
             Route::get('/superadmins', 'saindex')->middleware('admin.permission:superadmins')->name('superadmins');
