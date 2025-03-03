@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Roles
+    Role List
 @endsection
 
 @section('content')
@@ -42,38 +42,23 @@
                                 <thead>
                                     <tr>
                                         <th class="serial">#</th>
-                                        <th class="avatar">Avatar</th>
                                         <th>Nombre</th>
-                                        <th>Correo</th>
-                                        <th>Rol</th>
-                                        <th>Estado</th>
-                                        <th>Ingreso</th>
+                                        <th>Permiso</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($roles as $role)
                                         <tr>
-                                            <td class="serial"></td>
-                                            <td class="avatar">
-                                                <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src=""
-                                                        alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td>  </td>
-                                            <td> <span class="name"></span> </td>
-                                            <td> <span class="product"></span> </td>
-                                            <td>
-                                                    <span class="badge badge-success">Activo</span>
-                                            </td>
-                                            <td>
-                                                <span</span>
-                                            </td>
+                                            <td class="serial"> {{ $role->id }} </td>
+                                            <td>{{ $role->name }}</td>
+                                            <td>{{ $role->permissions->pluck('name')->join(', ') }}</td>
                                             <td>
                                                 <button class="btn-primary btn-edit">Editar</button>
                                                 <button class="btn-danger btn-borrar">Eliminar</button>
                                             </td>
                                         </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->
