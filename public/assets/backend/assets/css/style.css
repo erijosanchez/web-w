@@ -622,9 +622,10 @@ canvas {
   text-align: center;
 }
 
+
+
 .order-table tr:last-child td {
   border: none;
-  text-align: center;
 }
 
 .order-table .badge {
@@ -3612,6 +3613,15 @@ footer.site-footer .footer-inner a {
   .container {
       padding: 10px;
   }
+}
+
+
+.serial {
+  text-align: center;
+}
+
+.buttons-action {
+  text-align: center;
 }
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
