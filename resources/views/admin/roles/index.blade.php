@@ -18,9 +18,8 @@
                     <div class="page-header float-right">
                         <div class="page-title">
                             <ol class="breadcrumb text-right">
-                                <li><a href="#">Dashboard</a></li>
-                                <li><a href="#">Admins</a></li>
-                                <li class="active">Super Admins</li>
+                                <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                <li class="active">Lista de roles</li>
                             </ol>
                         </div>
                     </div>

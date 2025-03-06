@@ -44,11 +44,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         /** Rutas para a edicion, creación y listado de los roles y permisos*/
         Route::controller(PermisionRoleController::class)->group(function () {
             /** CREAR ADMINISTRADORES CON SUS ROLES */
-            /**Listado de roles*/
+            /**Roles*/
             Route::get('/role', 'index')->name('roles');
             Route::delete('/role/delete', 'delete')->name('roles.delete');
             Route::get('/role/create', 'create')->name('roles.create');
             Route::post('/role/store', 'store')->name('roles.store');
+            /**end roles routes */
+
+            /**Permisos */
+            Route::get('/permisos', 'permisosIndex')->name('permisos');
+            Route::get('/permisos/create', 'permisosCreate')->name('permisos.create');
+
+            /**End Permisos routes */
             Route::post('/store-admin', 'storeAdmin')->name('StoreAdmin');
             /** VISTA DEL LISTADO DE CADA ADMINISTRADOR SEGUN SU ROL */
             Route::get('/superadmins', 'saindex')->middleware('admin.permission:superadmins')->name('superadmins');
