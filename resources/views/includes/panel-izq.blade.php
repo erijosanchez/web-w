@@ -85,7 +85,7 @@
                         aria-expanded="false"><i class="menu-icon fa fa-gears"></i>Roles</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon ti-marker-alt"></i><a href="{{ route('admin.roles') }}">Lista de roles</a></li>
-                        <li><i class="menu-icon ti-marker-alt"></i><a href="#">Crear
+                        <li><i class="menu-icon ti-marker-alt"></i><a href="{{ route('admin.roles.create') }}">Crear
                                 Roles</a></li>
                     </ul>
                 </li>

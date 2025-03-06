@@ -48,6 +48,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/role', 'index')->name('roles');
             Route::delete('/role/delete', 'delete')->name('roles.delete');
             Route::get('/role/create', 'create')->name('roles.create');
+            Route::post('/role/store', 'store')->name('roles.store');
             Route::post('/store-admin', 'storeAdmin')->name('StoreAdmin');
             /** VISTA DEL LISTADO DE CADA ADMINISTRADOR SEGUN SU ROL */
             Route::get('/superadmins', 'saindex')->middleware('admin.permission:superadmins')->name('superadmins');

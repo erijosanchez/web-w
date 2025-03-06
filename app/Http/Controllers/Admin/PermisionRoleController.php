@@ -19,7 +19,7 @@ class PermisionRoleController extends Controller
     public function create()
     {
         $permissions = Permission::all();
-        return view('admin.roles.create', compact('permissions'));
+        return view('admin.roles.indexCreate', compact('permissions'));
     }
 
     //funcion que procesa la creación de un nuevo rol 
@@ -27,7 +27,7 @@ class PermisionRoleController extends Controller
     {
         $role = Roles::create($request->only('name', 'description'));
         $role->permissions()->sync($request->input('permissions', []));
-        return redirect()->route('admin.roles.index')->with('success', 'Rol creado exitosamente.');
+        return redirect()->route('admin.roles')->with('success', 'Rol creado exitosamente.');
     }
 
     //funcion para eliminar los roles
