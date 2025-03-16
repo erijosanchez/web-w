@@ -16,7 +16,7 @@
                         <img src="{{ $admin->profile_photo_url }}" alt="{{ $admin->name }}"
                             class="rounded-circle img-fluid profile-photo mt-4" style="width: 150px;">
                         <h5 class="my-3">{{ auth()->user()->name }}</h5>
-                        <p class="text-muted mb-1">{{ auth()->user()->name ?? 'Usuario' }}</p>
+                        <p class="text-muted mb-1">{{ $admin->roles->first()->name ?? 'Sin Asignar' }}</p>
 
                         <!-- Formulario para actualizar la foto de perfil de administrador -->
                         <form method="POST" action="{{ route('admin.update.photo') }}"

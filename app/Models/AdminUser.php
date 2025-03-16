@@ -12,12 +12,13 @@ class AdminUser extends Authenticatable
     protected $table =  'admin_users';
 
     //columnas de la tabla admin_user
-    protected $fillable = 
+    protected $fillable =
     [
         'name',
         'email',
         'password',
-        'profile_photo_path', /** Agrega campo de foto de perfil referenciado en la base de datos */
+        'profile_photo_path',
+        /** Agrega campo de foto de perfil referenciado en la base de datos */
         'is_active',
         'last_login'
     ];
@@ -31,7 +32,7 @@ class AdminUser extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany(Roles::class, 'admin_role');
+        return $this->belongsToMany(Roles::class, 'admin_role', 'admin_id', 'role_id');
     }
 
     public function pages()
@@ -56,7 +57,7 @@ class AdminUser extends Authenticatable
         if ($this->profile_photo_path) {
             return Storage::disk('public')->url($this->profile_photo_path);
         }
-        
+
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
     }
 }

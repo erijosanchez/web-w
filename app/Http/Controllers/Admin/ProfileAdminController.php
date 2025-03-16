@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Admin\UpdatePasswordRequest;
 use App\Http\Requests\Admin\UpdateProfileRequest;
 use App\Http\Requests\Admin\UpdateProfilePhotoRequest;
+use App\Models\AdminUser;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,9 @@ class ProfileAdminController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        return view('admin.profile.index', compact('admin'));
+        //Muestra el rol
+        $rol = AdminUser::find($admin->id)->roles()->first();
+        return view('admin.profile.index', compact('admin', 'rol'));
     }
 
     public function update_profile(UpdateProfileRequest $request)
