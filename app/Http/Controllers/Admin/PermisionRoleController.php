@@ -24,6 +24,13 @@ class PermisionRoleController extends Controller
         return view('admin.roles.indexCreate', compact('permissions'));
     }
 
+    public function edit()
+    {
+        $roles = Roles::with('permissions')->get();
+        $admin = Auth::guard('admin')->user();
+        return view('admin.roles.indexEdit', compact('roles', 'admin'));
+    }
+
     //funcion que procesa la creación de un nuevo rol 
     public function store(Request $request)
     {

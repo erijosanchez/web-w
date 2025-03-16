@@ -47,21 +47,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="contenido-tabla">
-                                    @foreach ($roles as $role)
-                                        <tr>
-                                            <td class="serial"> {{ $role->id }} </td>
-                                            <td>{{ $role->name }}</td>
-                                            <td>{{ $role->permissions->pluck('name')->join(', ') }}</td>
-                                            <td class="buttons-action">
-                                                <button class="btn-primary btn-edit"><a href="{{ route('admin.roles.edit', $role->name) }}">Editar</a></button>
-                                                <form action="{{ route('admin.roles.delete', $role->id) }}" method="POST"
-                                                    style="display:inline;">
-                                                    @csrf @method('DELETE')
-                                                    <button class="btn-danger btn-borrar">Eliminar</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->

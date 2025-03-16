@@ -49,6 +49,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::delete('/role/delete', 'delete')->name('roles.delete');
             Route::get('/role/create', 'create')->name('roles.create');
             Route::post('/role/store', 'store')->name('roles.store');
+            Route::get('/role/edit/{role}', 'edit')->name('roles.edit');
+            Route::put('/role/update/{role}', 'update')->name('roles.update');
             /**end roles routes */
 
             /**Permisos */

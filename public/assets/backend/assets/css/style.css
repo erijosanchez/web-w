@@ -3586,7 +3586,12 @@ footer.site-footer .footer-inner a {
 .btn-edit, .btn-borrar {
   border-radius: 5px;
   cursor: pointer;
+  color: #fff;
   padding: 0.2rem 0.8rem;
+}
+
+.btn-edit a {
+  color: #fff;
 }
 
 /*PERFIL DE LOS ADMINS*/
