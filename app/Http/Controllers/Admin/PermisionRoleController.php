@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Roles;
 use App\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 
 class PermisionRoleController extends Controller
 {
     public function index()
     {
         $roles = Roles::with('permissions')->get();
-        return view('admin.roles.index', compact('roles'));
+        $admin = Auth::guard('admin')->user();
+        return view('admin.roles.index', compact('roles', 'admin'));
     }
 
     //muestra la vista de creacion de rol
