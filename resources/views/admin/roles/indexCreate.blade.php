@@ -7,9 +7,10 @@
     <div class="container-fluid p-2">
         <div class="row">
             <div class="col-12">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-white border-bottom">
+                <div class="card">
+                    <div class="card-header">
                         <h5 class="mb-0 font-weight-bold">Crear Nuevo Rol</h5>
+                        <p class="mt-2 passt">* Asegurate de que la información ingresada sea la correcta.</p>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.roles.store') }}" class="needs-validation" id="adminForm"
@@ -47,9 +48,8 @@
                             </div>
 
                             <div class="d-flex justify-content-end gap-2 mt-4">
-                                <a href="#" class="btn btn-light px-4 mr-4">Cancelar</a>
-                                <button type="submit" class="btn btn-primary px-4" id="submitButton">Crear
-                                    Administrador...</button>
+                                <a href="{{ route('admin.roles') }}" class="btn btn-light px-4 mr-4">Cancelar</a>
+                                <button type="submit" class="btn btn-primary px-4" id="submitButton">Crear Rol...</button>
                             </div>
                         </form>
                     </div>
