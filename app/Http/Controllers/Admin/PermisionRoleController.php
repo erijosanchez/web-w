@@ -42,6 +42,15 @@ class PermisionRoleController extends Controller
         return redirect()->route('admin.roles')->with('success', 'Rol creado exitosamente.');
     }
 
+    //funcion que procesa la actualización de roles 
+    public function update(Request $request, $name)
+    {
+        $role = Roles::with('permissions')->where('name', $name)->firstOrFail();
+        $role->update($request->only('name', 'description'));
+        $role->permissions()->sync($request->input('permissions', []));
+        return redirect()->route('admin.roles')->with('success', 'Rol actualizado exitosament');
+    }
+
     //funcion para eliminar los roles
     public function delete(Roles $role)
     {

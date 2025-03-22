@@ -38,7 +38,7 @@
                             <p class="mt-2 passt">* Asegurate de que la información ingresada sea la correcta.</p>
                         </div>
                         <div class="card-body">
-                            <form action="" method="POST">
+                            <form action="{{ route('admin.roles.update', $roles->name) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
@@ -64,6 +64,10 @@
                                                 name="description" required value="{{ $roles->description }}">
                                         </div>
                                     </div>
+                                </div>
+                                <div class="d-flex justify-content-end gap-2 mt-4">
+                                    <a href="{{ route('admin.roles') }}" class="btn btn-light px-4 mr-4">Cancelar</a>
+                                    <button type="submit" class="btn btn-primary px-4" id="submitButton">Actualizar Rol...</button>
                                 </div>
                             </form>
                         </div>
