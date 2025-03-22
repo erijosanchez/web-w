@@ -43,7 +43,8 @@
                                         <th class="serial">#</th>
                                         <th>Nombre</th>
                                         <th>Permiso</th>
-                                        <th>Acción</th>
+                                        <th>Descripción</th>
+                                        <th style="width: 15rem">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody class="contenido-tabla">
@@ -51,7 +52,8 @@
                                         <tr>
                                             <td class="serial"> {{ $role->id }} </td>
                                             <td>{{ $role->name }}</td>
-                                            <td>{{ $role->permissions->pluck('name')->join(', ') }}</td>
+                                            <td class="desc-rol">{{ $role->permissions->pluck('name')->join(', ') }}</td>
+                                            <td>{{ $role->description }}</td>
                                             <td class="buttons-action">
                                                 <button class="btn-primary btn-edit"><a href="{{ route('admin.roles.edit', $role->name) }}">Editar</a></button>
                                                 <form action="{{ route('admin.roles.delete', $role->id) }}" method="POST"
