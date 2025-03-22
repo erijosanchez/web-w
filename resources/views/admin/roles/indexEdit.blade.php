@@ -43,28 +43,25 @@
                                 @method('PUT')
 
                                 <div class="form-group row">
-                                    <div class="mb-3 col-lg-6">
-                                        <label class="form-label" for="current_password">Contraseña Actual</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="current_password" name="current_password" required>
-                                        </div>
+                                    <div class="col-lg-6 mb-6">
+                                        <label for="permission" class="form-label text-muted">Permisos</label>
+                                        @foreach ($permissions as $permission)
+                                            <div class="form-check form-switch">
+                                                <input type="checkbox" class="form-check-input" id="flexSwitchCheckDefault"
+                                                    name="permissions[]" value="{{ $permission->id }}"
+                                                    {{ in_array($permission->name, $rolePermissions) ? 'checked' : '' }}>
+                                                {{ $permission->name }}
+                                            </div>
+                                        @endforeach
+                                        @error('permission')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3 col-lg-6">
-                                        <label class="form-label" for="current_password">Contraseña Actual</label>
+                                        <label for="description" class="form-label">Descripción</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="current_password" name="current_password" required>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-lg-6">
-                                        <label class="form-label" for="current_password">Contraseña Actual</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="current_password" name="current_password" required>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-lg-6">
-                                        <label class="form-label" for="current_password">Contraseña Actual</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="current_password" name="current_password" required>
+                                            <input type="text" class="form-control" id="description"
+                                                name="description" required value="{{ $roles->description }}">
                                         </div>
                                     </div>
                                 </div>

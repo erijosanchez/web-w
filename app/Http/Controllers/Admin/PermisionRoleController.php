@@ -28,8 +28,10 @@ class PermisionRoleController extends Controller
     public function edit($name)
     {
         $roles = Roles::with('permissions')->where('name', $name)->firstOrFail();
+        $permissions = Permission::all();
         $admin = Auth::guard('admin')->user();
-        return view('admin.roles.indexEdit', compact('roles', 'admin'));
+        $rolePermissions = $roles->permissions->pluck('name')->toArray(); 
+        return view('admin.roles.indexEdit', compact('roles', 'admin', 'permissions', 'rolePermissions'));
     }
 
     //funcion que procesa la creación de un nuevo rol 
