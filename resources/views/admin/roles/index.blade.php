@@ -56,10 +56,10 @@
                                             <td>{{ $role->description }}</td>
                                             <td class="buttons-action">
                                                 <button class="btn-primary btn-edit"><a href="{{ route('admin.roles.edit', $role->name) }}">Editar</a></button>
-                                                <form action="{{ route('admin.roles.delete', $role->id) }}" method="POST"
-                                                    style="display:inline;">
+                                                <form action="{{ route('admin.roles.delete', ['role' => $role->name]) }}" method="POST"
+                                                    style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este rol?');">
                                                     @csrf @method('DELETE')
-                                                    <button class="btn-danger btn-borrar">Eliminar</button>
+                                                    <button type="submit" class="btn-danger btn-borrar">Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

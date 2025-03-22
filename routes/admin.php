@@ -46,11 +46,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             /** CREAR ADMINISTRADORES CON SUS ROLES */
             /**Roles*/
             Route::get('/role', 'index')->name('roles');
-            Route::delete('/role/delete', 'delete')->name('roles.delete');
             Route::get('/role/create', 'create')->name('roles.create');
             Route::post('/role/store', 'store')->name('roles.store');
             Route::get('/role/edit/{role}', 'edit')->name('roles.edit');
             Route::put('/role/update/{role}', 'update')->name('roles.update');
+            Route::delete('/role/delete/{role}', 'delete')->name('roles.delete');
             /**end roles routes */
 
             /**Permisos */

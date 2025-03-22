@@ -52,9 +52,12 @@ class PermisionRoleController extends Controller
     }
 
     //funcion para eliminar los roles
-    public function delete(Roles $role)
+    public function delete($name)
     {
+        $role = Roles::where('name', $name)->firstOrFail();
+        // Eliminar las relaciones con los permisos
+        $role->permissions()->detach();
         $role->delete();
-        return redirect()->route('admin.roles')->with('success', 'Rol eliminado.');
+        return redirect()->route('admin.roles')->with('success', 'Rol eliminado correctamente');
     }
 }
