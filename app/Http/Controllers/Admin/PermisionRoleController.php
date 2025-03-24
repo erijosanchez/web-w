@@ -60,4 +60,10 @@ class PermisionRoleController extends Controller
         $role->delete();
         return redirect()->route('admin.roles')->with('success', 'Rol eliminado correctamente');
     }
+
+    /**FUNCIONES PARA EL MANEJO DE LOS PERMISOS */
+    public function indexPermission()
+    {
+        return redirect();
+    }
 }
