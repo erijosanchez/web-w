@@ -64,6 +64,7 @@ class PermisionRoleController extends Controller
     /**FUNCIONES PARA EL MANEJO DE LOS PERMISOS */
     public function indexPermission()
     {
-        return redirect();
+        $permissions = Permission::all();
+        return view('admin.permisos.index', compact('permissions'));
     }
 }

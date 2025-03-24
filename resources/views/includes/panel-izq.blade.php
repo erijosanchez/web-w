@@ -94,7 +94,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon ti-key"></i>Permisos</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon ti-marker-alt"></i><a href="#">Lista de Permisos</a></li>
+                        <li><i class="menu-icon ti-marker-alt"></i><a href="{{ route('admin.permission') }}">Lista de Permisos</a></li>
                         <li><i class="menu-icon ti-marker-alt"></i><a href="#">Crear
                                 Permisos</a></li>
                     </ul>

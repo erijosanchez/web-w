@@ -54,7 +54,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             /**end roles routes */
 
             /**Permisos */
-            Route::get('/permission', 'permisosIndex')->name('permission');
+            Route::get('/permission', 'indexPermission')->name('permission');
             Route::get('/permission/create', 'permissionCreate')->name('permission.create');
             Route::post('/permission/store', 'permissionStore')->name('permission.store');
             Route::get('/permission/edit/{permission}', 'permissionEdit')->name('permission.edit');
