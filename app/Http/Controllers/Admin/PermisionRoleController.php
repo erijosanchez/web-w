@@ -69,6 +69,21 @@ class PermisionRoleController extends Controller
         return view('admin.permisos.index', compact('permissions', 'admin'));
     }
 
+    //funcion para crear los permisos
+    public function permissionCreate()
+    {
+        $admin = Auth::guard('admin')->user();
+        return view('admin.permisos.indexCreate', compact('admin'));
+    }
+
+    //funcion para procesar la creación de los permissos
+    public function storePermission(Request $request)
+    {
+        Permission::create($request->only('name', 'description'));
+        return redirect()->route('admin.permisos')->with('success', 'Permiso creado exitos');
+    }
+
+
     //funcion para editar los permisos
     public function permissionEdit($name)
     {
@@ -92,3 +107,4 @@ class PermisionRoleController extends Controller
         return redirect()->route('admin.permission')->with('success', 'Permiso eliminado correctamente');  
     }
 }
+

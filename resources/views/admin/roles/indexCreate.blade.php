@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Create adminds
+    Create Roles
 @endsection
 
 @section('content')
