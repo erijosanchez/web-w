@@ -65,6 +65,14 @@ class PermisionRoleController extends Controller
     public function indexPermission()
     {
         $permissions = Permission::all();
-        return view('admin.permisos.index', compact('permissions'));
+        $admin = Auth::guard('admin')->user();
+        return view('admin.permisos.index', compact('permissions', 'admin'));
+    }
+
+    //funcion para editar los permisos
+    public function permissionEdit($name)
+    {
+        $permission = Permission::where('name', $name)->firstOrFail();
+        return view('admin.permisos.indexEdit', compact('permission'));
     }
 }

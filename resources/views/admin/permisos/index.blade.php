@@ -53,7 +53,7 @@
                                             <td>{{ $permission->name }}</td>
                                             <td>{{ $permission->description }}</td>
                                             <td class="buttons-action">
-                                                <button class="btn-primary btn-edit"><a href="{{ route('admin.roles.edit', $permission->name) }}">Editar</a></button>
+                                                <button class="btn-primary btn-edit"><a href="{{ route('admin.permission.edit', $permission->name) }}">Editar</a></button>
                                                 <form action="{{ route('admin.roles.delete', ['role' => $permission->name]) }}" method="POST"
                                                     style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este rol?');">
                                                     @csrf @method('DELETE')
