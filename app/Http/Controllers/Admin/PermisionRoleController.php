@@ -75,4 +75,20 @@ class PermisionRoleController extends Controller
         $permission = Permission::where('name', $name)->firstOrFail();
         return view('admin.permisos.indexEdit', compact('permission'));
     }
+
+    //funcion que procesa la edicion de los permisos
+    public function permissionUpdate(Request $request, $name)
+    {
+        $permission = Permission::where('name', $name)->firstOrFail();
+        $permission->update($request->only('name', 'description'));
+        return redirect()->route('admin.permission')->with('success', 'Permiso actualizado exit');
+    }
+
+    //funcion para eliminar los permisos
+    public function permissionDelete ($name) 
+    {
+        $permission = Permission::where('name', $name)->firstOrFail();
+        $permission->delete();
+        return redirect()->route('admin.permission')->with('success', 'Permiso eliminado correctamente');  
+    }
 }
